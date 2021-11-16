@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "832183223189",
+    "project_id": "hearts-db62b",
+    "storage_bucket": "hearts-db62b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:832183223189:android:f0ac494f42fd793160ac9c",
+        "android_client_info": {
+          "package_name": "host.exp.exponent"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "832183223189-83pmr85k2udjhquipa5cmhcuun6mfsc8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBwQ9rOewf7YRHluyk3RO2W8YQb6xi2i3k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "832183223189-83pmr85k2udjhquipa5cmhcuun6mfsc8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
