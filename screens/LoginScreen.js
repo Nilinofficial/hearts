@@ -21,7 +21,7 @@ const LoginScreen = () => {
             <Button title = "login"></Button> */}
 
             <ImageBackground 
-             source ={{uri : "https://tinder.com/static/tinder.png"}} 
+             source ={{uri : "https://www.linkpicture.com/q/PicsArt_11-17-12.17.23.jpg"}} 
              resizeMode = "cover"
              style ={tw("flex-1")}
             />

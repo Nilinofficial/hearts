@@ -16,7 +16,7 @@ const ModalScreen = () => {
     const [age, setAge] = useState(null);
    
 
-    const inCompleteForm = !job || !age;
+    const inCompleteForm = !image || !job || !age;
 
 
 const updateUserprofile = () => {
@@ -35,9 +35,9 @@ const updateUserprofile = () => {
     return (
         <View style={tw("flex-1 items-center pt-1")}>
             <Image
-                style={tw("h-20 w-full")}
+                style={tw("h-40 w-full")}
                 resizeMode="contain"
-                source={{ uri: "https://links.papareact.com/2pf" }}
+                source={{ uri: "https://www.linkpicture.com/q/PicsArt_11-16-09.28.21.png" }}
             />
 
             <Text style={tw("text-xl text-gray-500 p-2 font-bold")}>Welcome {user.displayName}</Text>
@@ -53,6 +53,8 @@ const updateUserprofile = () => {
 
 
           
+               <Text >Want to create profile url ? <Text style={{color: "blue"}} onPress ={()=> navigation.navigate("Image")}>Click here</Text></Text>
+
 
              {/* <Text style={tw("text-center p-4 font-bold text-red-400")}>
                 Step 2 : Your Name

@@ -10,8 +10,9 @@ import tw from 'tailwind-rn'
 import { StatusBar } from 'expo-status-bar'
 import { AntDesign,Entypo,Ionicons } from '@expo/vector-icons'; 
 import Swiper from 'react-native-deck-swiper'
-import { collection, doc, getDoc, getDocs, onSnapshot, query, setDoc, where } from '@firebase/firestore'
+import { collection, doc, DocumentSnapshot, getDoc, getDocs, onSnapshot, query, serverTimestamp, setDoc, where } from '@firebase/firestore'
 import { db } from '../firebase'
+import generateId from '../lib/generatId';
 
 
 const HomeScreen = () => {
@@ -84,8 +85,46 @@ const swipeLeft = (cardIndex) => {
     const swipeRight = async (cardIndex) => {
     
         if(!profiles[cardIndex]) return ;
-
+   
         const userSwiped = profiles[cardIndex];
+        const loggedInProfile = await(await getDoc(doc(db,'users',user.uid))).data();
+
+
+         //check if the user swiped on you
+
+         getDoc(doc(db,'users',userSwiped.id,'swipes',user.uid )).then((documentSnapshot) => 
+         {
+             if(documentSnapshot.exists()){
+                 //match
+                 
+        setDoc(doc(db,"users" ,user.uid, "swipes" , userSwiped.id ),userSwiped);
+                 console.log("hooray")
+
+
+
+                 //create a match
+
+                 setDoc(doc(db,'matches', generateId(user.uid,userSwiped.id)), {
+                     users : {
+                         [user.uid] : loggedInProfile,
+                         [userSwiped.id] : userSwiped
+                     },
+                     usersMatched: [user.uid,userSwiped.id],
+                     timestamp : serverTimestamp()
+                 })
+                  navigation.navigate("Match", {
+                      loggedInProfile,userSwiped
+                  });
+             }
+
+
+             else {
+
+             }
+
+         }
+         )
+
         console.log(`you swiped on ${userSwiped.displayName}`)
         
     
@@ -105,7 +144,7 @@ const swipeLeft = (cardIndex) => {
             </TouchableOpacity>
 
             <TouchableOpacity onPress={() => {navigation.navigate("Modal")}}  >
-            <Image style ={tw("h-14 w-14 ")}  source ={{uri: "https://i.pinimg.com/originals/d4/d8/82/d4d882dccd11187b7980ada01a465d48.png"}}/>
+            <Image style ={tw("h-14 w-14 ")}  source ={{uri: "https://www.linkpicture.com/q/PicsArt_11-16-10.00.30.png"}}/>
             </TouchableOpacity>
 
             <TouchableOpacity onPress={()=> navigation.navigate("Chat") }>
